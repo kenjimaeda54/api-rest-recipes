@@ -1,6 +1,6 @@
 # api-rest-recipes
 
-### API com JDBC,WEB SERVICE
+### API COM JDBC,WEB SERVICE
 
 Api simples para implementar logica de aplicacao de receitas
 
