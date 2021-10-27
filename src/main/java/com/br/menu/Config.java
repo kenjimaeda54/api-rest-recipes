@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Config {
-    public static final String keyUser = "RM87925";
-    public  static  final  String KeyPwd = "080689";
-    public  static final  String baseUlr = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+    public static final String keyUser = "";
+    public  static  final  String KeyPwd = "";
+    public  static final  String baseUlr = "L";
 
 
     public Connection getConnection() throws SQLException {
