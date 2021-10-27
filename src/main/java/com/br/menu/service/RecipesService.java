@@ -13,20 +13,24 @@ public class RecipesService {
     public RecipesService() throws SQLException {
     }
 
-    public List<Recipes>  getAllRecipes() {
+    public List<Recipes> getAllRecipes() {
         return recipesDao.getAllRecipes();
     }
 
-    public   void insertRecipes(Recipes recipes) {
+    public void insertRecipes(Recipes recipes) {
         recipesDao.insertRecipes(recipes);
     }
 
-    public  void updateRecipes(Recipes recipes,int id){
-        recipesDao.updateRecipes(recipes,id);
+    public void updateRecipes(Recipes recipes, int id) {
+        recipesDao.updateRecipes(recipes, id);
     }
 
-    public  List<Recipes> getRecipesById(Integer id){
+    public List<Recipes> getRecipesById(Integer id) {
         return recipesDao.getById(id);
+    }
+
+    public void deleteRecipe(int id) {
+        recipesDao.deleteRecipes(id);
     }
 
 }

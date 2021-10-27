@@ -9,5 +9,6 @@ public interface  RecipesDao {
     void   insertRecipes(Recipes recipes);
     void   updateRecipes(Recipes recipes,int id);
     List<Recipes>  getById(Integer id);
+    void   deleteRecipes(int id);
 
 }

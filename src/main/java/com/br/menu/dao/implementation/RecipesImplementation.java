@@ -101,6 +101,7 @@ public class RecipesImplementation implements RecipesDao {
                         eachRecipes.setDescription(rst.getString("recipes_description"));
                         eachRecipes.setDate(rst.getDate("recipes_date").toString());
                         eachRecipes.setHours(rst.getTime("recipes_date").toString());
+                        eachRecipes.setId(rst.getInt("recipes_id"));
                         recipes.add(eachRecipes);
                         conn.close();
                         stm.close();
@@ -113,6 +114,21 @@ public class RecipesImplementation implements RecipesDao {
             e.printStackTrace();
         }
         return  recipes;
+    }
+
+    @Override
+    public void deleteRecipes(int id) {
+        String query = "DELETE FROM recipes WHERE recipes_id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+            ps.execute();
+            ps.execute();
+            conn.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

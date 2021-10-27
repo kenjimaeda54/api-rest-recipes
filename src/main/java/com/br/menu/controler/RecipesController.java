@@ -28,9 +28,9 @@ public class RecipesController {
 
     @GET
     @Produces("application/json")
-    @PathParam("{id}")
-    public List<Recipes> getById() {
-        return service.getAllRecipes();
+    @Path("{id}")
+    public List<Recipes> getById(@PathParam("id") Integer id) {
+        return service.getRecipesById(id);
     }
 
     @POST
@@ -46,9 +46,16 @@ public class RecipesController {
     @PUT
     @Path("{id}")
     @Consumes("application/json")
-    public  Response updateRecipes(Recipes recipes,@PathParam("id")Integer id){
-        service.updateRecipes(recipes,id);
-        return  Response.ok().build();
+    public Response updateRecipes(Recipes recipes, @PathParam("id") Integer id) {
+        service.updateRecipes(recipes, id);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteRecipes(@PathParam("id") Integer id) {
+        service.deleteRecipe(id);
+        return Response.ok().build();
     }
 
 
