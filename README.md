@@ -1,8 +1,8 @@
 # api-rest-recipes
 
 ### API COM JDBC,WEB SERVICE
-
-Api simples para implementar logica de aplicacao de receitas
+- Api simples para implementar logica do software de receitas. <\br>
+- Software poderá adicionar, editar, deletar receitas. 
 
 
 ## Logica
