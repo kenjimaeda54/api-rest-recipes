@@ -8,9 +8,14 @@ import java.sql.SQLException;
 public class Config {
     public static final String keyUser = "";
     public  static  final  String KeyPwd = "";
-    public  static final  String baseUlr = "L";
-
-
+    public  static final  String baseUlr = "";
+    //joao
+    //RM87894
+    //160502
+    //-----------
+    //kenji
+    //RM 87925
+    // 080689
     public Connection getConnection() throws SQLException {
         OracleDataSource ods = new OracleDataSource();
         ods.setURL(Config.baseUlr);
