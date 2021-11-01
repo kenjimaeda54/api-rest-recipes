@@ -34,6 +34,8 @@ public class RecipesImplementation implements RecipesDao {
                     recipesEach.setId(rs.getInt("recipes_id"));
                     recipesEach.setLink(rs.getString("recipes_link"));
                     recipesEach.setTitle(rs.getString("recipes_title"));
+                    recipesEach.setLike(rs.getInt("recipes_like"));
+                    recipesEach.setDislike(rs.getInt("recipes_dislike"));
                     recipes.add(recipesEach);
 
                 }
@@ -49,12 +51,14 @@ public class RecipesImplementation implements RecipesDao {
 
     @Override
     public void insertRecipes(Recipes recipes) {
-        String query = "INSERT INTO RECIPES(recipes_title,recipes_description,recipes_link) VALUES(?,?,?)";
+        String query = "INSERT INTO RECIPES(recipes_title,recipes_description,recipes_link,recipes_like,recipes_dislike) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, recipes.getTitle());
             ps.setString(2, recipes.getDescription());
             ps.setString(3, recipes.getLink());
+            ps.setInt(4, recipes.getLike());
+            ps.setInt(5, recipes.getDislike());
             ps.execute();
             ps.close();
             conn.close();
@@ -68,14 +72,16 @@ public class RecipesImplementation implements RecipesDao {
     public void updateRecipes(Recipes recipes, int id) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String date = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(timestamp.getTime());
-        String query = "UPDATE RECIPES SET recipes_title=?,recipes_description=?,recipes_link=?,recipes_date=? WHERE recipes_id=?";
+        String query = "UPDATE RECIPES SET recipes_title=?,recipes_description=?,recipes_link=?,recipes_date=?,recipes_like=?,recipes_dislike=? WHERE recipes_id=?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, recipes.getTitle());
             ps.setString(2, recipes.getDescription());
             ps.setString(3, recipes.getLink());
             ps.setString(4, date);
-            ps.setInt(5, id);
+            ps.setInt(5, recipes.getLike());
+            ps.setInt(6, recipes.getDislike());
+            ps.setInt(7, id);
             ps.execute();
             ps.close();
             conn.close();
@@ -102,6 +108,8 @@ public class RecipesImplementation implements RecipesDao {
                         eachRecipes.setDate(rst.getDate("recipes_date").toString());
                         eachRecipes.setHours(rst.getTime("recipes_date").toString());
                         eachRecipes.setId(rst.getInt("recipes_id"));
+                        eachRecipes.setDislike(rst.getInt("recipes_dislike"));
+                        eachRecipes.setLike(rst.getInt("recipes_like"));
                         recipes.add(eachRecipes);
                         conn.close();
                         stm.close();
@@ -113,7 +121,7 @@ public class RecipesImplementation implements RecipesDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  recipes;
+        return recipes;
     }
 
     @Override
@@ -121,7 +129,7 @@ public class RecipesImplementation implements RecipesDao {
         String query = "DELETE FROM recipes WHERE recipes_id=?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ps.execute();
             ps.execute();
             conn.close();

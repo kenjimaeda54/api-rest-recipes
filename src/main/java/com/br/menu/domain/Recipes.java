@@ -10,6 +10,24 @@ public class Recipes {
     private String link;
     private String description;
     private String title;
+    private Integer like = 0;
+    private Integer dislike = 0;
+
+    public Integer getLike() {
+        return like;
+    }
+
+    public void setLike(Integer like) {
+        this.like = like;
+    }
+
+    public Integer getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(Integer dislike) {
+        this.dislike = dislike;
+    }
 
     public int getId() {
         return id;
